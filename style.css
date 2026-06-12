@@ -1,0 +1,270 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+}
+
+.aviso {
+    position: absolute;
+    padding: 20px;
+    border-radius: 3px;
+    width: 250px;
+    left: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #2b6cb0;
+}
+
+#feed-container {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* O Card agora agrupa tudo na vertical */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 22px;
+    border-radius: 16px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column; /* Alinha o cabeçalho e os comentários verticalmente */
+    gap: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Cabeçalho do Card (Nome do aluno e Botão) */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card h3 {
+    color: #2d3748;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Botão de Curtir */
+.like-btn {
+    background: #edf2f7;
+    border: none;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+    background: #e2e8f0;
+    transform: scale(1.05);
+}
+
+.like-btn.liked {
+    background: #fff5f5;
+    color: #e53e3e;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(229, 62, 62, 0.15);
+}
+
+.like-btn .counter {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+}
+
+/* --- SEÇÃO DE COMENTÁRIOS --- */
+.comments-section {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* Lista onde ficam os comentários */
+.comentarios-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 150px;
+    overflow-y: auto; /* Adiciona barra de rolagem se tiver muitos comentários */
+}
+
+.comentario-item {
+    background: #f7fafc;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #4a5568;
+    border-left: 3px solid #cbd5e0;
+    word-break: break-word;
+}
+
+/* Caixa de Input e Botão */
+.comentario-input-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.comentario-input-box input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.comentario-input-box input:focus {
+    border-color: #3182ce;
+}
+
+.comentario-input-box button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.comentario-input-box button:hover {
+    background: #2b6cb0;
+}
+
+Força o nome do aluno a ser um texto travado e intocável
+.card h3, .nome-aluno {
+    user-select: none;          /* Impede que o usuário consiga selecionar o texto arrastando o mouse */
+    -webkit-user-select: none;  /* Compatibilidade com Safari/Chrome */
+    pointer-events: none;       /* Desativa qualquer clique, foco ou interação do mouse com o texto */
+    cursor: default !important; /* Garante que o mouse continue sendo a setinha padrão, e não a barra de texto */
+}
+
+/* Bloqueia o cursor de texto e a seleção em elementos que devem ser fixos */
+.card h3, 
+.nome-aluno, 
+.like-btn, 
+.like-btn *, 
+.comentario-item {
+    user-select: none;          /* Impede selecionar o texto arrastando o mouse */
+    -webkit-user-select: none;  /* Chrome e Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE/Edge */
+}
+
+/* Garante que o botão de curtida mantenha o cursor de clique (mãozinha) e nunca o de texto */
+.like-btn, .like-btn * {
+    cursor: pointer !important;
+}
+
+/* Garante que os nomes dos alunos usem a seta padrão do mouse */
+.nome-aluno {
+    cursor: default !important;
+}
+
+/* --- CORREÇÃO DA CAIXA DE INPUT E BOTÃO --- */
+.comentario-input-box {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+    align-items: center;
+    position: relative;
+    /* Bloqueia qualquer seleção ou cursor fantasma vindo da div pai */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.comentario-input-box input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    outline: none;
+    background-color: #ffffff;
+    transition: border 0.2s;
+    
+    /* Força o cursor de texto a aparecer APENAS dentro do input */
+    cursor: text !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+.comentario-input-box input:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.1);
+}
+
+.comentario-input-box button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.comentario-input-box button:hover {
+    background: #2b6cb0;
+}
+
+/* Ajuste para o item de comentário segurar o botão de apagar nas pontas */
+.comentario-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilo do botão de apagar (X) */
+.delete-comment-btn {
+    background: none;
+    border: none;
+    color: #a0aec0;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.delete-comment-btn:hover {
+    color: #e53e3e;
+    background-color: #fff5f5;
+}
